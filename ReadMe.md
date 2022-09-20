@@ -1,10 +1,4 @@
-# PHP | Build a Complete API
-## Learn How to Create APIs in PHP
-Udemy Course created by [Mustafa Alawi](https://www.udemy.com/course/create-apis-in-php/#instructor-1)  
-Udemy Course [Link](https://www.udemy.com/course/create-apis-in-php/)  
-Udemy Course Last updated 7/2021  
-Udemy Course Ratings 4.8
-
+# QuickStart Docker-Compose API Environment
 
 ## Docker-Compose
 I recreated the run-time environment to Docker-Compose
