@@ -1,12 +1,16 @@
-# QuickStart Docker-Compose API Environment
+# SC-DC-PHP-MVC Environment
+- SC : ScorpioCoding
+- DC : Docker-Compose
+- PHP:
+- MVC: Model-View-Controller
 
 ## Docker-Compose
-I recreated the run-time environment to Docker-Compose
+I created the run-time environment to Docker-Compose
 So you'll find the docker files within the git.
 Beware you need Docker & Docker-Compose up and running to use this git.
 
 ## PDO Version
-The original uses Msqli and I like PDO so I started converting the course to PDO.
+The Environment will be using PDO
 
 ## Author
 I'm the ["denOldTimer"](https://github.com/denOldTimer) from [ScropioCoding.com](https://scorpiocoding.com) and I'm a self-taught full-stack developer.  
@@ -18,6 +22,7 @@ If any questions just let me know via github.
 ## HOW TO USE
 
 1. The rules of docker-compose
+      - Root directory var/www/public/index.php
 
 2. localhost -> runs the index.php
 
