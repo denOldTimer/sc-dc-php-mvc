@@ -30,6 +30,8 @@ return (object) array(
   '/api/movie/read'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readAll'],
   '/api/movie/read/{id:\d+}'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readById'],
   '/api/movie/read/{ptitle}'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readByTitle'],
+  '/api/movie/create'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'create'],
+  '/api/movie/update'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'update'],
 
   //BACKEND - POST REQUESTS VIA FORMS
   '/admin/login' => ['namespace' => 'Admin', 'controller' => 'Login', 'action' => 'index'],

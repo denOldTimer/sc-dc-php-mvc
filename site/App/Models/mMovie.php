@@ -11,7 +11,7 @@ class mMovie extends Model
   // C - CREATE
   public function movieCreateByTitle($params)
   {
-    $query = "INSERT INTO `movies` (`id`, `title`, `storyline`, `lang`, `genre`, `release_date`, `box_office`, `runtime`, `stars`) VALUES (NULL, :title, :storyline, :lang, :genre, :release_date, :box_office, :runtime, :stars)";
+    $query = "INSERT INTO `movies` (`id`, `title`, `ptitle`, `storyline`, `lang`, `genre`, `release_date`, `box_office`, `runtime`, `stars`) VALUES (NULL, :title, :ptitle, :storyline, :lang, :genre, :release_date, :box_office, :runtime, :stars)";
 
     return self::createByTitle($query, $params);
   }
@@ -34,11 +34,11 @@ class mMovie extends Model
     return self::readById($query, $params);
   }
 
-  public function movieReadByTitle($title)
+  public function movieReadByTitle($ptitle)
   {
-    $query = "SELECT * FROM `movies` WHERE `title` = :title ";
+    $query = "SELECT * FROM `movies` WHERE `ptitle` = :ptitle ";
     $params = array(
-      "title" => $title
+      "ptitle" => $ptitle
     );
     return self::readByTitle($query, $params);
   }
@@ -49,7 +49,7 @@ class mMovie extends Model
     // TODO CReate a ID check
     $id ? true : false;
 
-    $query = "UPDATE `movies` SET `title`=:title, `storyline`=:storyline, `lang`=:lang, `genre`=:genre, `release_date`=:release_date, `box_office`=:box_office, `runtime`=:runtime, `stars`=:stars WHERE `id`= :id";
+    $query = "UPDATE `movies` SET `title`=:title, `ptitle`=:ptitle,`storyline`=:storyline, `lang`=:lang, `genre`=:genre, `release_date`=:release_date, `box_office`=:box_office, `runtime`=:runtime, `stars`=:stars WHERE `id`= :id";
 
     return self::updateById($query, $params);
   }
