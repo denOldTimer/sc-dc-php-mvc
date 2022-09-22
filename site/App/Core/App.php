@@ -2,21 +2,26 @@
 
 namespace App\Core;
 
-use App\Config\Routes;
+use App\Config\Config;
 
 
 
 class App
 {
-  public function __construct($routes)
+  public function __construct()
   {
 
-    self::router($routes);
+    self::router();
   }
 
 
-  private static function router($routes)
+  private static function router()
   {
+
+    $config = new Config();
+    $config->setRoutes();
+    $routes = $config->getRoutes();
+
     $router = new Router();
 
     foreach ($routes as $route => $params) {

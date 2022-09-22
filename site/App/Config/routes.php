@@ -11,7 +11,7 @@ return (object) array(
 
   //FRONTEND - GET REQUESTS
   //1. REQUEST_URI is empty,
-  '/' => ['lang' => 'en', 'controller' => 'Home', 'action' => 'index'],
+  '/' => ['lang' => 'en', 'namespace' => 'Site', 'controller' => 'Home', 'action' => 'index'],
   //2. REQUEST_URI has no action => index
   '/home'            => ['namespace' => 'Site', 'controller' => 'Home', 'action' => 'index'],
   '/about'           => ['namespace' => 'Site', 'controller' => 'About', 'action' => 'index'],
@@ -25,6 +25,11 @@ return (object) array(
   //API BLOGPOST - GET REQUESTS 
   '/api/post/read/{id:\d+}'           => ['namespace' => 'Api', 'controller' => 'Post', 'action' => 'read'],
   '/api/post/read/{id:\d+}/{ptitle}'  => ['namespace' => 'Api', 'controller' => 'Post', 'action' => 'read'],
+
+  //API MOVIES - GET/POST REQUESTS
+  '/api/movie/read'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readAll'],
+  '/api/movie/read/{id:\d+}'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readById'],
+  '/api/movie/read/{ptitle}'  => ['namespace' => 'Api', 'controller' => 'Movie', 'action' => 'readByTitle'],
 
   //BACKEND - POST REQUESTS VIA FORMS
   '/admin/login' => ['namespace' => 'Admin', 'controller' => 'Login', 'action' => 'index'],

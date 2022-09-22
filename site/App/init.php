@@ -1,7 +1,6 @@
 <?php
 
-
-$routes = include_once('Config/routes.php');
+include_once('Config/database.php');
 
 
 use App\Core\App;
@@ -17,4 +16,5 @@ spl_autoload_register(function ($class) {
   if (is_readable($class)) require $class;
 });
 
-$app = new app($routes);
+//$app = new app($routes);
+$app = new app();
