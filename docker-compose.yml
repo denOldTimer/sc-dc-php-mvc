@@ -1,60 +1,65 @@
 version: "3"
 
 services:
-  app:
+  back-app:
+    container_name: back-app
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
     image: site
-    #container_name: app
     restart: unless-stopped
     volumes:
       - ./site:/var/www
+    networks:
+      - scorpionet
 
-  webserver:
+  back-server:
+    container_name: back-server
     build:
       context: ./dockerfiles
       dockerfile: nginx.dockerfile
-    image: nginx
-    #container_name: webserver
+    image: nginx:alpine
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./site:/var/www
       - ./config/nginx/:/etc/nginx/conf.d/
     depends_on:
-      - app
-      - db
-    links:
-      - app
-      - db
-      - phpmyadmin
+      - back-app
+      - back-db
+    networks:
+      - scorpionet
 
-  db:
+  back-db:
+    container_name: back-db
     platform: linux/x86_64
     image: mysql:8
-    #image: mysql:5.7.22
-    #container_name: db
-    #environment:
-    #   MYSQL_SERVER: db
-    #   MYSQL_DATABASE: moviesapi
-    #   MYSQL_ROOT_PASSWORD: r00tadmin
     env_file:
       - ./env/db.env
     ports:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - scorpionet
 
-  phpmyadmin:
+  back-phpmyadmin:
+    container_name: back-phpmydmin
     image: phpmyadmin/phpmyadmin
     env_file:
       - ./env/phpmyadmin.env
     ports:
-      - 81:80
+      - "8081:80"
+    networks:
+      - scorpionet
 
 volumes:
   dbdata:
     driver: local
+
+networks:
+  scorpionet:
+    name: scorpionet
+    driver: bridge
+
