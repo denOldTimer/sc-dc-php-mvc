@@ -1,5 +1,8 @@
 version: "3"
 
+networks:
+  scorpionet:
+    
 services:
   backapp:
     container_name: backapp
@@ -10,6 +13,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./site:/var/www
+    ports:
+      - "127.0.0.1:9000:9000"
     networks:
       - scorpionet
 
@@ -21,44 +26,40 @@ services:
     image: nginx:stable-alpine
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:9080:80"
     volumes:
       - ./site:/var/www
-      - ./config/nginx/:/etc/nginx/conf.d/
-    depends_on:
-      - backapp
-      - backdb
+      - ./dockerfiles/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
     networks:
       - scorpionet
 
-  backdb:
-    container_name: backdb
-    platform: linux/x86_64
-    image: mysql:8
-    env_file:
-      - ./env/db.env
-    ports:
-      - "127.0.0.1:3306:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - scorpionet
+#   backdb:
+#     container_name: backdb
+#     platform: linux/x86_64
+#     image: mysql:8
+#     env_file:
+#       - ./env/db.env
+#     ports:
+#       - "127.0.0.1:9306:3306"
+#     volumes:
+#       - dbdata:/var/lib/mysql
+#     networks:
+#       - scorpionet
 
-  backphpmyadmin:
-    container_name: backphpmydmin
-    image: phpmyadmin/phpmyadmin
-    env_file:
-      - ./env/phpmyadmin.env
-    ports:
-      - "127.0.0.1:8081:80"
-    networks:
-      - scorpionet
+#   backphpmyadmin:
+#     container_name: backphpmydmin
+#     image: phpmyadmin/phpmyadmin
+#     env_file:
+#       - ./env/phpmyadmin.env
+#     ports:
+#       - "127.0.0.1:9081:80"
+#     networks:
+#       - scorpionet
 
-volumes:
-  dbdata:
-    driver: local
+# volumes:
+#   dbdata:
+#     driver: local
 
-networks:
-  scorpionet:
 
 
