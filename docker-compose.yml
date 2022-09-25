@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  back-app:
-    container_name: back-app
+  backapp:
+    container_name: backapp
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
@@ -13,44 +13,44 @@ services:
     networks:
       - scorpionet
 
-  back-server:
-    container_name: back-server
+  backserver:
+    container_name: backserver
     build:
       context: ./dockerfiles
       dockerfile: nginx.dockerfile
-    image: nginx:alpine
+    image: nginx:stable-alpine
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "127.0.0.1:8080:80"
     volumes:
       - ./site:/var/www
       - ./config/nginx/:/etc/nginx/conf.d/
     depends_on:
-      - back-app
-      - back-db
+      - backapp
+      - backdb
     networks:
       - scorpionet
 
-  back-db:
-    container_name: back-db
+  backdb:
+    container_name: backdb
     platform: linux/x86_64
     image: mysql:8
     env_file:
       - ./env/db.env
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
     networks:
       - scorpionet
 
-  back-phpmyadmin:
-    container_name: back-phpmydmin
+  backphpmyadmin:
+    container_name: backphpmydmin
     image: phpmyadmin/phpmyadmin
     env_file:
       - ./env/phpmyadmin.env
     ports:
-      - "8081:80"
+      - "127.0.0.1:8081:80"
     networks:
       - scorpionet
 
@@ -60,6 +60,5 @@ volumes:
 
 networks:
   scorpionet:
-    name: scorpionet
-    driver: bridge
+
 
