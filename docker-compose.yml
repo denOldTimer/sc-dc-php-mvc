@@ -34,32 +34,32 @@ services:
     networks:
       - scorpionet
 
-#   backdb:
-#     container_name: backdb
-#     platform: linux/x86_64
-#     image: mysql:8
-#     env_file:
-#       - ./env/db.env
-#     ports:
-#       - "127.0.0.1:9306:3306"
-#     volumes:
-#       - dbdata:/var/lib/mysql
-#     networks:
-#       - scorpionet
+  backdb:
+    container_name: backdb
+    platform: linux/x86_64
+    image: mysql:8
+    env_file:
+      - ./env/db.env
+    ports:
+      - "127.0.0.1:9306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - scorpionet
 
-#   backphpmyadmin:
-#     container_name: backphpmydmin
-#     image: phpmyadmin/phpmyadmin
-#     env_file:
-#       - ./env/phpmyadmin.env
-#     ports:
-#       - "127.0.0.1:9081:80"
-#     networks:
-#       - scorpionet
+  backphpmyadmin:
+    container_name: backphpmydmin
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - ./env/phpmyadmin.env
+    ports:
+      - "127.0.0.1:9081:80"
+    networks:
+      - scorpionet
 
-# volumes:
-#   dbdata:
-#     driver: local
+volumes:
+  dbdata:
+    driver: local
 
 
 
